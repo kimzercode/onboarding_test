@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reddy Onboarding Leaderboard</title>
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: sans-serif;
+            background-color: black;
+            color: white;
+        }
+
+        .wrapper{
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+        .users-table {
+            max-width: 640px;
+        }
+
+        .user-stats h4 {
+            margin: 4px 0;
+        }
+
+        .user-card {
+            padding: 1em;
+            background-color: #6666;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            border-radius: 4px;
+        }
+
+        .profile {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .profile-pic {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background-color: gray;
+            margin-right: 4px;
+        }
+
+        span {
+            color: lightgray;
+        }
+
+        select {
+            width: 240px;
+            height: 36px;
+            padding-left: 4px;
+            background-color: #6666;
+            color: white;
+        }
+
+        option {
+            background-color: gray;
+            color: white;
+        }
+        select, button {
+            font-size: inherit;
+        }
+
+        button {
+            max-width: 240px;
+            min-width: 200px;
+            height: 36px;
+            color: black;
+            background: powderblue;
+            padding: 5px 12px;
+            border-radius: 4px;
+            border: none;
+        }
+
+        form {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        
+        <h3>Reddy Leaderboard</h3>
+        
+        <section>
+            <h4>This month</h4>
+            <div class="users-table">
+                {% for user in users %}
+                <div class="user-card">
+                    <div class="profile">
+                        <div class="profile-pic"></div>
+                        <div class="user-stats">
+                            <h4>#{{forloop.counter}}</h4>
+                            <span class="username">{{user.username}}</span>
+                        </div>
+                    </div>
+                    <span class="score">{{user.score}}</span>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+        
+        <section>
+            <h4>Training</h4>
+            <p>Choose a training module to increase your score.</p>
+
+            <form action="/train">
+                <select name="activity" id="activity">
+                    {% for activity in activity_list %}
+                    <option value="{{activity}}">{{ activity }}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit">Train</button>
+            </form>
+
+        </section>
+    </div>
+</body>
+</html>

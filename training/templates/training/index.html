@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reddy Onboarding Leaderboard</title>
+</head>
+<body>
+    <h1>Onboarding Leaderboard</h1>
+    
+    <h2>Recent Scores</h2>
+    {% for user in rank %}
+    <h3>{{user}}</h3>
+    {% endfor %}
+    
+    <h3>Do training</h3>
+    <p>Choose an activity</p>
+
+    <select name="activity" id="activity_id">
+        {% for activity in activity_list %}
+            <option value="{{activity}}">{{ activity }}</option>
+        {% endfor %}
+        <option value=""></option>
+    </select>
+</body>
+</html>
